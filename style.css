@@ -1,0 +1,271 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #111;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+nav ul li a:hover {
+  color: #f39c12;
+}
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://source.unsplash.com/random/1600x900?cinema');
+  background-size: cover;
+  background-position: center;
+}
+header h2 {
+  font-size: 9rem;
+  line-height: 97%;
+  font-weight: 400;
+}
+.section {
+  padding: 4rem 2rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.card img, .card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.card:hover img, .card:hover video {
+  transform: scale(1.05);
+}
+.card .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.card:hover .info {
+  transform: translateY(0);
+}
+.info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.info p {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.tile img,
+.tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Overlay effect */
+.tile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.tile .overlay h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.tile .overlay span {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+/* Hover animation */
+.tile:hover img,
+.tile:hover video {
+  filter: grayscale(100%) brightness(60%);
+  transform: scale(1.03);
+}
+
+.tile:hover .overlay {
+  opacity: 1;
+}
+
+footer {
+  background-color: #111;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.about-modern {
+  padding: 6rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-container {
+  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: top;
+  justify-content: left;
+}
+
+.about-image img {
+  width: 220px;
+  height: 340px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.about-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.experience-section {
+  max-width: 900px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+  text-align: left;
+}
+
+.experience-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+}
+
+.experience-card {
+  border-left: 4px solid #f39c12;
+  padding-left: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.experience-card h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.experience-years {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #aaa;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.experience-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-weight: 300;
+  color: #ddd;
+}
+
+.links-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.links-icons a {
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.links-icons a:hover {
+  transform: scale(1.2);
+  color: #f39c12;
+}
+
+#links h2 {
+  text-align: center;
+  font-size: 2.4rem;
+}
