@@ -1,12 +1,11 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 body {
-  background-color: #000;
+  background-color: #020204;
   color: #fff;
   overflow-x: hidden;
 }
@@ -15,14 +14,14 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background-color: #111;
+  background-color: #101014;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 nav h1 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 300;
 }
 nav ul {
   list-style: none;
@@ -36,21 +35,21 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 nav ul li a:hover {
-  color: #f39c12;
+  color: #787878;
 }
 header {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://source.unsplash.com/random/1600x900?cinema');
+  background-image: url("https://source.unsplash.com/random/1600x900?cinema");
   background-size: cover;
   background-position: center;
 }
 header h2 {
-  font-size: 9rem;
-  line-height: 97%;
-  font-weight: 400;
+  font-size: 10rem;
+  line-height: 98%;
+  font-weight: 500;
 }
 .section {
   padding: 4rem 2rem;
@@ -66,13 +65,15 @@ header h2 {
   border-radius: 12px;
   cursor: pointer;
 }
-.card img, .card video {
+.card img,
+.card video {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.5s ease;
 }
-.card:hover img, .card:hover video {
+.card:hover img,
+.card:hover video {
   transform: scale(1.05);
 }
 .card .info {
@@ -80,7 +81,7 @@ header h2 {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   padding: 1rem;
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -100,19 +101,23 @@ header h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .tile {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
 }
 
 .tile img,
 .tile video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   display: block;
   transition: filter 0.4s ease, transform 0.4s ease;
 }
@@ -159,10 +164,11 @@ header h2 {
 }
 
 footer {
-  background-color: #111;
-  padding: 2rem;
+  background-color: #020204;
+  padding: 2.5rem;
   text-align: center;
   font-size: 0.8rem;
+  margin-top: 12rem;
 }
 
 .about-modern {
@@ -173,7 +179,7 @@ footer {
 }
 
 .about-container {
-  max-width: 1100px;
+  max-width: 1500px;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
@@ -182,16 +188,18 @@ footer {
 }
 
 .about-image img {
-  width: 220px;
-  height: 340px;
+  width: 400px;
+  height: 550px;
   object-fit: cover;
   filter: grayscale(100%);
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .about-text {
-  max-width: 600px;
+  max-width: 700px;
   text-align: left;
+  padding-left: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .about-text h2 {
@@ -202,13 +210,13 @@ footer {
 
 .about-text p {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 200%;
   font-weight: 300;
   margin-bottom: 1.5rem;
 }
 
 .experience-section {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 6rem auto;
   padding: 0 2rem;
   text-align: left;
@@ -221,9 +229,9 @@ footer {
 }
 
 .experience-card {
-  border-left: 4px solid #f39c12;
+  border-left: 4px solid #7b7b7b;
   padding-left: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .experience-card h3 {
@@ -241,10 +249,93 @@ footer {
 }
 
 .experience-card p {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   font-weight: 300;
   color: #ddd;
+}
+
+.logo-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  color: #787878;
+}
+
+.project-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 7rem 2rem 9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  color: #fff;
+}
+
+.project-header {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.project-title {
+  font-size: 6.5rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.project-subtitle {
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: #ccc;
+  line-height: 150%;
+  max-width: 1100px;
+}
+
+.project-section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.project-section h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.project-section p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 200%;
+  color: #ddd;
+  max-width: 800px;
+}
+
+.project-image {
+  width: 1000px;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 4rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+}
+
+.back-link:hover {
+  color: #fff;
 }
 
 .links-icons {
