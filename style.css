@@ -26,7 +26,7 @@ nav h1 {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 nav ul li a {
   color: #fff;
@@ -47,9 +47,10 @@ header {
   background-position: center;
 }
 header h2 {
-  font-size: 10rem;
+  font-size: 6.2rem;
   line-height: 98%;
   font-weight: 500;
+  padding-bottom: 10vh;
 }
 .section {
   padding: 4rem 2rem;
@@ -101,7 +102,8 @@ header h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  padding: 0;
+  padding-left: 18vw;
+  padding-right: 18vw;
   margin: 0;
 }
 
@@ -117,9 +119,10 @@ header h2 {
 .tile video {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   display: block;
   transition: filter 0.4s ease, transform 0.4s ease;
+  transform-origin: center center;
 }
 
 /* Overlay effect */
@@ -165,7 +168,7 @@ header h2 {
 
 footer {
   background-color: #020204;
-  padding: 2.5rem;
+  padding: 4.5rem;
   text-align: center;
   font-size: 0.8rem;
   margin-top: 12rem;
@@ -209,7 +212,7 @@ footer {
 }
 
 .about-text p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 200%;
   font-weight: 300;
   margin-bottom: 1.5rem;
@@ -249,7 +252,7 @@ footer {
 }
 
 .experience-card p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.7;
   font-weight: 300;
   color: #ddd;
@@ -267,37 +270,40 @@ footer {
 .project-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 7rem 2rem 9rem;
+  padding: 2rem 2rem 9rem;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 2rem;
   color: #fff;
 }
 
 .project-header {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .project-title {
   font-size: 6.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3.5rem;
   font-weight: 600;
   line-height: 120%;
 }
 
 .project-subtitle {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   font-weight: 300;
   color: #ccc;
   line-height: 150%;
   max-width: 1100px;
+  margin-bottom: 3rem;
 }
 
 .project-section {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .project-section h2 {
@@ -308,11 +314,11 @@ footer {
 }
 
 .project-section p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 200%;
   color: #ddd;
-  max-width: 800px;
+  max-width: 1100px;
 }
 
 .project-image {
@@ -320,18 +326,20 @@ footer {
   height: 600px;
   object-fit: cover;
   display: block;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
 }
 
 .back-link {
   display: inline-block;
-  margin-top: 2rem;
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
   transition: color 0.3s ease;
   font-size: 1rem;
   padding-left: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
 }
 
 .back-link:hover {
@@ -359,4 +367,23 @@ footer {
 #links h2 {
   text-align: center;
   font-size: 2.4rem;
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+[data-animate].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: #ffffff;
+  margin: 1rem auto;
+  width: 100%;
 }
