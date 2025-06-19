@@ -6,7 +6,7 @@
 }
 body {
   background-color: #040302;
-  color: #fff;
+  color: #ffffff;
   overflow-x: hidden;
 }
 nav {
@@ -47,10 +47,10 @@ header {
   background-position: center;
 }
 header h2 {
-  font-size: 10.2rem;
+  font-size: 2.5rem;
   line-height: 98%;
-  font-weight: 500;
-  padding-bottom: 10vh;
+  font-weight: 400;
+  padding-bottom: 10rem;
 }
 .section {
   padding: 4rem 2rem;
@@ -103,6 +103,8 @@ header h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
   margin: 0;
+  padding-left: 15rem;
+  padding-right: 15rem;
 }
 
 .tile {
@@ -284,10 +286,10 @@ footer {
 
 .project-title {
   font-size: 6.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   margin-top: 3.5rem;
   font-weight: 600;
-  line-height: 120%;
+  line-height: 100%;
 }
 
 .project-subtitle {
@@ -296,7 +298,7 @@ footer {
   color: #ccc;
   line-height: 150%;
   max-width: 1100px;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .project-section {
@@ -350,7 +352,7 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin-top: 2rem;
+  margin-top: 20rem;
 }
 
 .links-icons a {
