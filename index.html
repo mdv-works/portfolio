@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="background-3d"></div>
+
     <nav>
       <h1><a href="index.html" class="logo-link">mdv</a></h1>
       <ul>
         <li><a href="#wall">Proyectos</a></li>
         <li><a href="about.html">Quién Soy</a></li>
         <li><a href="experience.html">Experiencia</a></li>
-        <li><a href="#links">Enlaces</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
 
@@ -58,14 +59,16 @@
           </div>
         </div>
         <div class="tile">
-          <video autoplay muted loop>
-            <source
-              src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto3.mp4?updatedAt=1750341297463"
-              type="video/mp4"
-            />
-          </video>
+          <a href="proyecto-3.html" class="tile">
+            <video autoplay muted loop>
+              <source
+                src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto3.mp4?updatedAt=1750341297463"
+                type="video/mp4"
+              />
+            </video>
+          </a>
           <div class="overlay">
-            <h3>Carteles de teatro clásico</h3>
+            <h3>Carteles de teatro</h3>
             <span>2024</span>
           </div>
         </div>
@@ -125,6 +128,11 @@
       </div>
     </section>
     <footer>© 2025 Mi Portfolio Visual. Todos los derechos reservados.</footer>
+    <!-- Required scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/examples/js/geometries/TextGeometry.js"></script>
+
     <script src="main.js"></script>
   </body>
 </html>
