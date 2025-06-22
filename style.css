@@ -225,8 +225,8 @@ footer {
 
 .experience-section {
   max-width: 1200px;
-  margin: 6rem auto;
-  padding: 0 1.5rem;
+  margin: 1rem;
+  padding: 0 1rem;
   text-align: left;
 }
 
@@ -635,7 +635,7 @@ Tablet (up to 1024px)
   /* About */
   .about-modern {
     flex-direction: column;
-    padding: 4rem 1rem;
+    padding: 0 1rem;
   }
   .about-image img {
     width: 100%;
@@ -769,12 +769,11 @@ Phone (up to 600px)
   }
 
   /* About */
-  .about-modern {
-    padding: 2rem 1rem;
-  }
   .about-container {
+    padding: 2rem 1rem;
     flex-direction: column;
     gap: 2rem;
+    margin: 0.5rem;
   }
   .about-image img {
     width: 100%;
@@ -782,21 +781,24 @@ Phone (up to 600px)
   }
   .about-text {
     margin-bottom: 2rem;
+    width: 90vw;
   }
 
   /* Experience */
   .experience-section {
-    padding: 0 1rem;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    margin: 0.5rem;
   }
   .experience-section h2 {
-    font-size: 2rem;
+    font-size: 2.8rem;
   }
   .experience-card {
     padding-left: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
   .experience-card h3 {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   /* Projects */
@@ -840,6 +842,7 @@ Phone (up to 600px)
   .contact-section {
     flex-direction: column;
     padding: 2rem 1rem;
+    margin: 0.5rem;
   }
   .contact-grid {
     grid-template-columns: 1fr;
