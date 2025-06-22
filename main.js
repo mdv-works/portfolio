@@ -88,7 +88,7 @@ window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
 
   // Scale the blur effect – tweak the factor (e.g. 0.02) to control how fast it grows
-  const blurAmount = Math.min(scrollY * 0.06, 100); // cap blur to 10px max
+  const blurAmount = Math.min(scrollY * 0.09, 100); // cap blur to 10px max
 
   // Optionally dim the brightness a little when scrolling
   const brightnessAmount = Math.max(1 - scrollY * 0.0015, 0.0015);
@@ -96,4 +96,41 @@ window.addEventListener("scroll", () => {
   document.getElementById(
     "background-3d"
   ).style.filter = `blur(${blurAmount}px) brightness(${brightnessAmount})`;
+});
+
+(function () {
+  const h2 = document.querySelector("header h2[data-animate]");
+  let vh = window.innerHeight - 850;
+  const speed = 1.15; // 0 = stuck forever, 1 = normal scroll speed
+
+  // Recompute on resize
+  window.addEventListener("resize", () => {
+    vh = window.innerHeight;
+    update(); // re‐apply in case scrollY < new vh
+  });
+
+  // Core update function
+  function update() {
+    const y = window.scrollY;
+    if (y < vh) {
+      // still in the first viewport: keep center
+      h2.style.transform = "translate(-50%, -50%)";
+    } else {
+      // past 100vh: drift up at 'speed'
+      const offset = (y - vh) * speed;
+      h2.style.transform = `translate(-50%, -50%) translateY(-${offset}px)`;
+    }
+  }
+
+  // Wire it up
+  window.addEventListener("scroll", update);
+
+  // Initial call to lock into place immediately
+  update();
+})();
+
+const btn = document.getElementById("menu-toggle");
+const nav = document.querySelector("nav");
+btn.addEventListener("click", () => {
+  nav.classList.toggle("open");
 });

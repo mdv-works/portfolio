@@ -5,7 +5,7 @@
   font-family: "Manrope", sans-serif;
 }
 body {
-  background-color: #040302;
+  background-color: #060414;
   color: #ffffff;
   overflow-x: hidden;
 }
@@ -14,7 +14,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background-color: #101014;
+  background-color: #0c0c1a;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -38,22 +38,25 @@ nav ul li a:hover {
   color: #787878;
 }
 header {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("https://source.unsplash.com/random/1600x900?cinema");
-  background-size: cover;
-  background-position: center;
+  height: 220vh; /* enough scroll room */
+  position: relative;
+  overflow: hidden;
 }
-header h2 {
-  font-size: 6.5rem;
-  line-height: 98%;
+
+header h2[data-animate] {
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  line-height: 1.05;
   font-weight: 400;
   padding-bottom: 10rem;
-  position: relative;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
   z-index: 10;
+  will-change: transform;
 }
+
 .section {
   padding: 4rem 2rem;
 }
@@ -169,7 +172,7 @@ header h2 {
 }
 
 footer {
-  background-color: #101014;
+  background-color: #0c0c1a;
   padding: 5.5rem;
   text-align: center;
   font-size: 0.8rem;
@@ -300,7 +303,7 @@ footer {
   color: #ccc;
   line-height: 150%;
   max-width: 1100px;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .project-section {
@@ -340,6 +343,25 @@ footer {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.video-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 500px;
+  z-index: -1; /* Behind all other content */
+  overflow: hidden;
+}
+
+.video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(14px) brightness(60%);
+  transform: scale(1);
+  z-index: -100;
 }
 
 .back-link {
@@ -468,15 +490,6 @@ footer {
   overflow: hidden;
 }
 
-.video-background {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(22px) brightness(55%);
-  transform: scale(1);
-  z-index: -100;
-}
-
 .video-group-horizontal {
   margin-bottom: 3rem;
   margin-top: 6.5rem;
@@ -494,4 +507,366 @@ footer {
   filter: blur(0px) brightness(1);
   transform: translateY(0px);
   transition: transform 0.1s ease-out;
+}
+
+.center-subtitle {
+  display: flex; /* <-- add this */
+  flex-direction: column; /* center in both axes if you have more than one line */
+  align-items: center;
+  justify-content: top;
+  margin-bottom: 38vh;
+  text-align: center; /* also center the text itself */
+  width: 100vw;
+  height: 40vh;
+}
+
+.center-subtitle p {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #ccc;
+  line-height: 150%;
+  max-width: 1400px;
+}
+
+/* -- Hamburger button (hidden on desktop via your existing rules) -- */
+.hamburger {
+  width: 24px;
+  height: 29px; /* tighter than 24px */
+  display: none; /* your phone-only rule still applies */
+  flex-direction: column;
+  justify-content: center; /* center the three bars */
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Bars: no extra rounding, equal spacing via margin */
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  margin: 3px 0; /* bars only 4px apart */
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  transform-origin: center center;
+}
+
+/* Ensure we can animate width/opacity on all spans */
+.hamburger span {
+  transition: width 0.3s ease, opacity 0.3s ease;
+  transform: none !important; /* clear any rotate from before */
+}
+
+/* When nav.open: hide bar 1 & 3, lengthen bar 2 */
+nav.open .hamburger span:nth-child(1),
+nav.open .hamburger span:nth-child(3) {
+  width: 50%; /* make it 1.5× longer */
+}
+
+nav.open .hamburger span:nth-child(2) {
+  width: 150%; /* make it 1.5× longer */
+}
+
+/*MEDIA QUERIES*/
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––
+Tablet (up to 1024px)
+–––––––––––––––––––––––––––––––––––––––––––––––*/
+@media (max-width: 1024px) {
+  /* Nav */
+  nav {
+    padding: 1rem 1.5rem;
+  }
+  nav h1 {
+    font-size: 1.25rem;
+  }
+  nav ul {
+    gap: 1.5rem;
+  }
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+
+  /* Hero text */
+  header {
+    max-width: 100vw;
+  }
+  header h2[data-animate] {
+    font-size: clamp(5rem, 7vw, 3rem);
+    white-space: normal;
+    padding: 0 0.5rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 100vw !important;
+    text-align: center;
+  }
+
+  /* Sections */
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  /* Generic grid */
+  .grid {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  /* Wall grid */
+  .wall-grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* About */
+  .about-modern {
+    flex-direction: column;
+    padding: 4rem 1rem;
+  }
+  .about-image img {
+    width: 100%;
+    height: auto;
+  }
+  .about-text {
+    padding-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  /* Experience */
+  .experience-section {
+    padding: 0 1rem;
+  }
+  .experience-section h2 {
+    font-size: 2rem;
+  }
+  .experience-card h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Projects */
+  .project-title {
+    font-size: 4rem;
+  }
+  .project-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .project-image {
+    width: 75vw !important;
+    height: auto !important;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    margin-top: 6.5rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  /* Links */
+  .links-icons {
+    gap: 1.5rem;
+  }
+
+  /* Contact */
+  .contact-section {
+    flex-direction: column;
+    padding: 4rem 1rem;
+  }
+  .contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Video hero */
+  .video-hero {
+    height: 425px;
+  }
+
+  /* Center subtitle */
+  .center-subtitle {
+    height: 26vh;
+    margin-bottom: 20vh;
+  }
+  .center-subtitle p {
+    font-size: 1.8rem;
+    padding: 0 1rem;
+  }
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––
+Phone (up to 600px)
+–––––––––––––––––––––––––––––––––––––––––––––––*/
+@media (max-width: 600px) {
+  /* Nav */
+  nav {
+    padding: 0.75rem 1rem;
+  }
+  nav h1 {
+    font-size: 1rem;
+  }
+  nav ul {
+    gap: 1rem;
+  }
+  nav ul li a {
+    font-size: 0.8rem;
+  }
+
+  /* Hero text */
+
+  header {
+    max-width: 100vw;
+  }
+  header h2[data-animate] {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    white-space: normal;
+    padding: 0 0.5rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 100vw !important;
+    text-align: center;
+  }
+
+  /* Sections */
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  /* Generic grid */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Wall grid */
+  .wall-grid {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  /* About */
+  .about-modern {
+    padding: 2rem 1rem;
+  }
+  .about-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .about-image img {
+    width: 100%;
+    height: auto;
+  }
+  .about-text {
+    margin-bottom: 2rem;
+  }
+
+  /* Experience */
+  .experience-section {
+    padding: 0 1rem;
+  }
+  .experience-section h2 {
+    font-size: 2rem;
+  }
+  .experience-card {
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+  }
+  .experience-card h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Projects */
+  .project-title {
+    font-size: 2.5rem;
+  }
+  .project-subtitle {
+    font-size: 1.2rem;
+  }
+  .project-image {
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-image {
+    width: 75vw !important;
+    height: auto !important;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    margin-top: 6.5rem;
+  }
+
+  .video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(14px) brightness(60%);
+    transform: scale(1);
+    z-index: -100;
+  }
+
+  /* Links */
+  .links-icons {
+    gap: 1rem;
+  }
+
+  /* Contact */
+  .contact-section {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-item {
+    font-size: 0.9rem;
+  }
+  .contact-item img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Video hero */
+  .video-hero {
+    height: 425px;
+  }
+
+  /* Center subtitle */
+  .center-subtitle {
+    height: 50vh;
+    margin-bottom: 35vh;
+  }
+  .center-subtitle p {
+    font-size: 1.2rem;
+  }
+  /* show hamburger on phones */
+  .hamburger {
+    display: flex;
+  }
+  nav ul {
+    display: none;
+  }
+
+  /* when you click, nav.open reveals the vertical menu */
+  nav.open ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0c0c1a;
+    padding: 1rem 0;
+  }
+  nav.open ul li {
+    margin: 4.5rem 0;
+    text-align: center;
+  }
+  nav.open ul li a {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+  }
 }
