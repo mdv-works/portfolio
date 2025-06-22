@@ -521,7 +521,7 @@ footer {
 }
 
 .center-subtitle p {
-  font-size: clamp(1.6rem, 2.2vw, 4.5rem);
+  font-size: clamp(1.4rem, 1.8vw, 3rem);
   font-weight: 300;
   color: #ccc;
   line-height: 150%;
