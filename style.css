@@ -540,6 +540,7 @@ footer {
   border: none;
   cursor: pointer;
   padding: 0;
+  z-index: 100;
 }
 
 /* Bars: no extra rounding, equal spacing via margin */
@@ -745,7 +746,7 @@ Phone (up to 600px)
     width: 90vw !important;
     white-space: wrap;
     text-align: center;
-    font-size: clamp(2.5rem, 5vw, 3rem);
+    font-size: clamp(1.5rem, 3vw, 3rem);
     line-height: 1.1;
     padding: 0 1rem;
   }
@@ -880,13 +881,11 @@ Phone (up to 600px)
     left: 0;
     width: 100%;
     background: #0c0c1a;
-    padding: 6rem;
-    padding-bottom: 10rem;
+    padding: 3rem;
     overflow-y: auto; /* scroll if items exceed view */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* first at top, last at bottom */
-    z-index: 0;
+    justify-content: top;
     opacity: 93%;
   }
 
@@ -911,7 +910,7 @@ Phone (up to 600px)
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 999;
   opacity: 1;
   transition: opacity 0.5s ease;
 }

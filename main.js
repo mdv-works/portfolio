@@ -1,3 +1,23 @@
+window.addEventListener("load", () => {
+  const pre = document.getElementById("preloader");
+  const content = document.getElementById("content");
+
+  // fade out the preloader
+  pre.classList.add("fade-out");
+
+  // once fade-out is done, hide it and show your content
+  pre.addEventListener("transitionend", () => {
+    pre.style.display = "none";
+    content.style.display = "";
+  });
+});
+
+const btn = document.getElementById("menu-toggle");
+const nav = document.querySelector("nav");
+btn.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -15,6 +35,7 @@ document.querySelectorAll("[data-animate]").forEach((el) => {
 });
 
 // Script 3D
+
 // Get container
 const container = document.getElementById("background-3d");
 
@@ -100,7 +121,7 @@ window.addEventListener("scroll", () => {
 
 (function () {
   const h2 = document.querySelector("header h2[data-animate]");
-  let vh = window.innerHeight - 850;
+  let vh = window.innerHeight - 900;
   const speed = 1.15; // 0 = stuck forever, 1 = normal scroll speed
 
   // Recompute on resize
@@ -128,23 +149,3 @@ window.addEventListener("scroll", () => {
   // Initial call to lock into place immediately
   update();
 })();
-
-const btn = document.getElementById("menu-toggle");
-const nav = document.querySelector("nav");
-btn.addEventListener("click", () => {
-  nav.classList.toggle("open");
-});
-
-window.addEventListener("load", () => {
-  const pre = document.getElementById("preloader");
-  const content = document.getElementById("content");
-
-  // fade out the preloader
-  pre.classList.add("fade-out");
-
-  // once fade-out is done, hide it and show your content
-  pre.addEventListener("transitionend", () => {
-    pre.style.display = "none";
-    content.style.display = "";
-  });
-});
