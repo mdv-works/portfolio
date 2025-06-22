@@ -134,3 +134,17 @@ const nav = document.querySelector("nav");
 btn.addEventListener("click", () => {
   nav.classList.toggle("open");
 });
+
+window.addEventListener("load", () => {
+  const pre = document.getElementById("preloader");
+  const content = document.getElementById("content");
+
+  // fade out the preloader
+  pre.classList.add("fade-out");
+
+  // once fade-out is done, hide it and show your content
+  pre.addEventListener("transitionend", () => {
+    pre.style.display = "none";
+    content.style.display = "";
+  });
+});
