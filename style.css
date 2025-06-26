@@ -494,6 +494,7 @@ footer {
   margin-bottom: 3rem;
   margin-top: 6.5rem;
   justify-self: center !important;
+  flex-direction: flex;
 }
 
 #background-3d {
@@ -802,33 +803,43 @@ Phone (up to 600px)
   }
 
   /* Projects */
+
+  .project-section {
+    padding: 0;
+  }
+  .project-header {
+    padding: 0;
+  }
+
   .project-title {
     font-size: 2.5rem;
   }
   .project-subtitle {
     font-size: 1.2rem;
-  }
-  .project-image {
-    width: 100%;
-    height: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.6rem;
   }
 
   .project-image {
-    width: 75vw !important;
-    height: auto !important;
-    display: block;
+    width: 100vw !important;
+    aspect-ratio: 16 / 9; /* force a 16:9 box */
+    margin: 6.5rem 0 3rem !important;
     overflow: hidden;
-    margin-bottom: 3rem;
-    margin-top: 6.5rem;
+    position: relative;
+  }
+
+  .project-image iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
 
   .banner-background {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(14px) brightness(60%);
+    filter: blur(0px) brightness(0%);
+    opacity: 0;
     transform: scale(1);
     z-index: -100;
   }
