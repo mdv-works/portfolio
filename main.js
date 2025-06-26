@@ -149,3 +149,17 @@ window.addEventListener("scroll", () => {
   // Initial call to lock into place immediately
   update();
 })();
+
+// Calidad máxima vimeo
+document.addEventListener("DOMContentLoaded", () => {
+  const iframe = document.querySelector(".project-image iframe");
+  const player = new Vimeo.Player(iframe);
+
+  player
+    .getQualities()
+    .then((qualities) => {
+      qualities.sort((a, b) => b.height - a.height);
+      return player.setQuality(qualities[0].quality);
+    })
+    .catch(console.error);
+});
