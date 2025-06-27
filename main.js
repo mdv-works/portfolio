@@ -119,35 +119,30 @@ window.addEventListener("scroll", () => {
   ).style.filter = `blur(${blurAmount}px) brightness(${brightnessAmount})`;
 });
 
+// Parallax header
+
 (function () {
   const h2 = document.querySelector("header h2[data-animate]");
-  let vh = window.innerHeight - 900;
-  const speed = 1.15; // 0 = stuck forever, 1 = normal scroll speed
+  let vh = window.innerHeight;
+  const speed = 1.2;
 
-  // Recompute on resize
   window.addEventListener("resize", () => {
     vh = window.innerHeight;
-    update(); // re‐apply in case scrollY < new vh
+    update(); // re-center if viewport size changes
   });
 
-  // Core update function
   function update() {
-    const y = window.scrollY;
+    const y = window.scrollY + 200;
     if (y < vh) {
-      // still in the first viewport: keep center
       h2.style.transform = "translate(-50%, -50%)";
     } else {
-      // past 100vh: drift up at 'speed'
       const offset = (y - vh) * speed;
       h2.style.transform = `translate(-50%, -50%) translateY(-${offset}px)`;
     }
   }
 
-  // Wire it up
   window.addEventListener("scroll", update);
-
-  // Initial call to lock into place immediately
-  update();
+  update(); // ← fire once on load so it never “jumps” into place
 })();
 
 // Calidad máxima vimeo
