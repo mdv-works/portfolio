@@ -17,7 +17,7 @@ nav {
   background-color: #0c0c1a;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 500;
 }
 nav h1 {
   font-size: 1.5rem;
@@ -29,7 +29,7 @@ nav ul {
   gap: 2.5rem;
 }
 nav ul li a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 300;
   transition: color 0.3s ease;
@@ -52,7 +52,7 @@ header h2[data-animate] {
   transform: translate(-50%, -50%);
   font-size: clamp(1rem, 4vw, 6rem);
   line-height: 1.05;
-  font-weight: 400;
+  font-weight: 100;
   white-space: nowrap;
   z-index: 10;
 }
@@ -274,19 +274,21 @@ footer {
 }
 
 .project-container {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 2rem 2rem 9rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  color: #fff;
+  color: #ffffff;
+  align-items: center;
 }
 
 .project-header {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-bottom: 2rem;
+  height: 400px;
 }
 
 .project-title {
@@ -300,22 +302,31 @@ footer {
 .project-subtitle {
   font-size: 2.2rem;
   font-weight: 300;
-  color: #ccc;
+  color: #cccccc;
   line-height: 140%;
   max-width: 1100px;
   margin-bottom: 4rem;
 }
 
-.project-section {
+.project-carousel {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-bottom: 1.5rem;
+  width: 1100px;
+  justify-items: center;
+}
+
+.project-section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1150px;
 }
 
 .project-section h2 {
   font-size: 1.6rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: #ffffff;
 }
 
@@ -324,7 +335,7 @@ footer {
   font-weight: 300;
   line-height: 200%;
   color: #ddd;
-  max-width: 1100px;
+  width: 100%;
 }
 
 .project-image {
@@ -341,18 +352,8 @@ footer {
   margin: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-}
-
-.video-hero {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 500px;
-  z-index: -1; /* Behind all other content */
-  overflow: hidden;
 }
 
 .banner-background {
@@ -365,15 +366,14 @@ footer {
 }
 
 .back-link {
-  display: inline-block;
+  display: flex;
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
   transition: color 0.3s ease;
   font-size: 1rem;
-  padding-left: 1.5rem;
-  margin-top: 2rem;
   position: relative;
+  margin-top: 14rem;
 }
 
 .back-link:hover {
@@ -485,16 +485,21 @@ footer {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 500px;
+  height: 525px;
   z-index: -1; /* Behind all other content */
   overflow: hidden;
+  opacity: 0.4;
 }
 
 .video-group-horizontal {
-  margin-bottom: 3rem;
-  margin-top: 6.5rem;
-  justify-self: center !important;
-  flex-direction: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  gap: 1rem;
 }
 
 #background-3d {
@@ -515,7 +520,7 @@ footer {
   flex-direction: column; /* center in both axes if you have more than one line */
   align-items: center;
   justify-content: top;
-  margin-bottom: 70vh;
+  margin-bottom: 60vh;
   text-align: center; /* also center the text itself */
   width: 100vw;
   height: 50vh;
@@ -568,6 +573,91 @@ nav.open .hamburger span:nth-child(3) {
 
 nav.open .hamburger span:nth-child(2) {
   width: 150%; /* make it 1.5× longer */
+}
+
+/*CAROUSEL*/
+
+.carousel {
+  position: relative;
+  overflow: visible;
+  width: 105%;
+  max-width: 100vw;
+  margin: 2rem 0;
+  z-index: 100;
+  margin-bottom: 3rem;
+}
+.carousel__container {
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+}
+.carousel__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.carousel__slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---- Para un “pop” extra al entrar ---- */
+@keyframes slideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.carousel__slide.active {
+  animation: slideIn 0.6s ease forwards;
+}
+.carousel__slide.active {
+  display: block;
+}
+.carousel__slide img,
+.carousel__slide video,
+.carousel__slide iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border: 0;
+}
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scaleY(1200%) scaleX(400%);
+  border: none;
+  background: none !important;
+  color: #6d62b8;
+  font-size: 1.5rem;
+  font-weight: 100;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+  text-shadow: 0px 0px 0.5px #000000;
+}
+.carousel__button:hover {
+  color: #533ddd;
+}
+.carousel__button--prev {
+  left: 2rem;
+}
+.carousel__button--next {
+  right: 2rem;
 }
 
 /*MEDIA QUERIES*/
@@ -659,11 +749,30 @@ Tablet (up to 1024px)
   }
 
   /* Projects */
+
+  .project-container {
+    overflow: hidden;
+  }
+
+  .project-section {
+    width: 90vw !important;
+    padding: 0 !important;
+  }
+  .project-header {
+    padding: 0;
+    width: 100%;
+  }
+
+  .project-section p {
+    width: 90vw;
+  }
+
   .project-title {
     font-size: 4rem;
   }
   .project-subtitle {
     font-size: 1.5rem;
+    width: 100%;
   }
 
   .project-image {
@@ -705,6 +814,24 @@ Tablet (up to 1024px)
   .center-subtitle p {
     font-size: 1.5rem;
     padding: 0 1rem;
+  }
+  .carousel {
+    width: 90% !important;
+    margin: 1.5rem auto;
+  }
+  .carousel__container {
+    padding-top: 56.25%; /* 16:9 ratio, igual que antes */
+  }
+  .carousel__button {
+    font-size: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  .carousel__button--prev {
+    left: 1rem;
+  }
+  .carousel__button--next {
+    right: 1rem;
   }
 }
 
@@ -804,11 +931,18 @@ Phone (up to 600px)
 
   /* Projects */
 
+  .project-container {
+    overflow: hidden;
+  }
+
   .project-section {
-    padding: 0;
+    width: 85vw !important;
+    padding: 0 !important;
   }
   .project-header {
     padding: 0;
+    width: 100%;
+    height: auto;
   }
 
   .project-title {
@@ -816,7 +950,11 @@ Phone (up to 600px)
   }
   .project-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0;
+  }
+
+  .project-section p {
+    width: 100%;
   }
 
   .project-image {
@@ -832,6 +970,11 @@ Phone (up to 600px)
     height: 100%;
     border: 0;
     display: block;
+  }
+
+  .video-group-horizontal {
+    flex-direction: column;
+    justify-content: none;
   }
 
   .banner-background {
@@ -910,6 +1053,33 @@ Phone (up to 600px)
   }
   nav.open ul li a {
     font-size: clamp(1.2rem, 3vw, 3rem);
+  }
+
+  .carousel {
+    width: 100% !important;
+    margin: 1rem 0;
+  }
+  .carousel__container {
+    padding-top: 75%; /* un poco más alto en móvil si lo prefieres */
+  }
+  .carousel__slide img,
+  .carousel__slide video,
+  .carousel__slide iframe {
+    object-fit: cover;
+  }
+  .carousel__button {
+    /* reset the crazy scales */
+    transform: translateY(-100%) scale(3) !important;
+    /* make them smaller */
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+  .carousel__button--prev {
+    left: 0.5rem !important;
+  }
+  .carousel__button--next {
+    right: 0.5rem !important;
   }
 }
 
