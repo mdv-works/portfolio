@@ -1210,7 +1210,7 @@ Phone (up to 600px)
 
   .carousel {
     width: 100% !important;
-    margin: 1rem 0;
+    margin: 0;
   }
   .carousel__container {
     padding-top: 75%; /* un poco más alto en móvil si lo prefieres */
@@ -1243,6 +1243,63 @@ Phone (up to 600px)
     max-width: 100vw !important;
     padding: 0;
     margin: 0 auto 3rem;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-height: 600px) {
+  .project-carousel,
+  .carousel {
+    width: 65vw !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    height: auto !important;
+  }
+  .carousel__button {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 3.5rem !important;
+    height: 7rem !important;
+    font-size: 2rem !important;
+    text-shadow: none;
+  }
+
+  .carousel__button--prev {
+    left: -2.8rem !important;
+  }
+  .carousel__button--next {
+    right: -2.8rem !important;
+  }
+
+  /* show hamburger on phones */
+  .hamburger {
+    display: flex;
+  }
+  nav ul {
+    display: none;
+  }
+
+  nav.open ul {
+    position: fixed; /* fix to viewport, not to nav */
+    top: 2rem; /* height of your nav bar */
+    bottom: 0; /* down to bottom of screen */
+    left: 0;
+    width: 100%;
+    background: #0c0c1a;
+    padding: 0;
+    overflow-y: auto; /* scroll if items exceed view */
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    opacity: 93%;
+  }
+
+  /* tighten up the gaps so fewer overflow */
+  nav.open ul li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  nav.open ul li a {
+    font-size: clamp(1rem, 2.2vw, 2.6rem);
   }
 }
 

@@ -9,12 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[current].classList.remove("active");
     current = (newIndex + slides.length) % slides.length;
     const nextSlide = slides[current];
-    nextSlide.style.animation = "none";
+    nextSlide.style.animation = "none"; // reset animation
     nextSlide.offsetHeight; // force reflow
-    nextSlide.style.animation = "";
+    nextSlide.style.animation = ""; // re-trigger it
     nextSlide.classList.add("active");
   }
 
+  // Prev/Next buttons still work on all devices:
   prevBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     updateSlides(current - 1);
@@ -24,14 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlides(current + 1);
   });
 
-  // Fullscreen + orientation toggle
   carousel.addEventListener("click", async (e) => {
+    // don’t fullscreen on phones (≤600px) or on portrait tablets (≤1200px + portrait)
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const isPortrait = h > w;
+    if (w <= 600 || (w <= 1200 && isPortrait)) {
+      return;
+    }
+
     if (e.target.closest(".carousel__button")) return;
 
     if (!document.fullscreenElement) {
       try {
         await carousel.requestFullscreen();
-        // lock to landscape if possible
         if (screen.orientation && screen.orientation.lock) {
           await screen.orientation.lock("landscape");
         }
@@ -47,27 +54,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // When fullscreen state changes, toggle class and unlock orientation
+  // Keep your is-fullscreen class toggling
   document.addEventListener("fullscreenchange", () => {
     if (document.fullscreenElement === carousel) {
       carousel.classList.add("is-fullscreen");
     } else {
       carousel.classList.remove("is-fullscreen");
-      // unlock orientation on exit
       if (screen.orientation && screen.orientation.unlock) {
         screen.orientation.unlock();
       }
     }
   });
 
-  // Keyboard nav
+  // Keyboard nav (fullscreen only)
   document.addEventListener("keydown", (e) => {
     if (document.fullscreenElement !== carousel) return;
     if (e.key === "ArrowLeft") updateSlides(current - 1);
     if (e.key === "ArrowRight") updateSlides(current + 1);
   });
 
-  // Touch swipe
+  // Swipe nav (all devices)
   let touchStartX = 0;
   carousel.addEventListener(
     "touchstart",
@@ -87,11 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
+  // Close‐button in fullscreen
   const closeBtn = document.querySelector(".carousel__close");
-
-  // Close-button click => exit fullscreen
   closeBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // don’t trigger the carousel’s click-to-fullscreen
+    e.stopPropagation();
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(console.error);
     }
