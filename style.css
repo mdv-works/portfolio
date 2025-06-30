@@ -700,36 +700,60 @@ nav.open .hamburger span:nth-child(2) {
 }
 
 /*─────────────────────────────────────────────────────────────
-  Portrait‐mode fullscreen fallback: rotate carousel 90°
+  Center the fullscreen carousel on any viewport 
 ─────────────────────────────────────────────────────────────*/
+.carousel.is-fullscreen {
+  position: relative !important;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  /* pull the element back by half its own width/height */
+  /* adapt to viewport, but cap to your content width */
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 1150px !important; /* match your desktop max */
+  z-index: 500 !important;
+  background: rgba(0, 0, 0, 0.85); /* optional backdrop dim */
+}
+
+/* Maintain 16:9 aspect inside the centered box */
+.carousel.is-fullscreen .carousel__container {
+  width: 100% !important;
+  padding-top: 56.25% !important; /* 9/16*100 */
+}
+
+/* If you’re using the rotate-landscape fallback, combine centering + rotation */
 .carousel.is-fullscreen.rotate-landscape {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* swap dimensions to fill the viewport when rotated */
-  width: 100vh;
-  height: 100vw;
-  /* center + rotate */
-  transform: translate(-50%, -50%) rotate(90deg);
-  transform-origin: center center;
-  overflow: hidden;
-  z-index: 9999;
-  background: #000; /* optional backdrop */
+  /* same centering + rotation */
+  position: relative !important;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 1150px !important;
+  height: auto !important;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 0;
 }
 
-/* make sure each slide still covers the rotated container */
+/* Make sure each slide fills the rotated box */
 .carousel.is-fullscreen.rotate-landscape .carousel__slide {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-/* and the media inside each slide */
+/* And the inner media stays contained and centered */
+.carousel.is-fullscreen .carousel__slide img,
+.carousel.is-fullscreen .carousel__slide video,
+.carousel.is-fullscreen .carousel__slide iframe,
 .carousel.is-fullscreen.rotate-landscape .carousel__slide img,
 .carousel.is-fullscreen.rotate-landscape .carousel__slide video,
 .carousel.is-fullscreen.rotate-landscape .carousel__slide iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 100vw !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
 }
 
 /*MEDIA QUERIES*/
@@ -1169,10 +1193,10 @@ Phone (up to 600px)
   }
 
   .carousel__button--prev {
-    left: -3rem !important;
+    left: -2.6rem !important;
   }
   .carousel__button--next {
-    right: -3rem !important;
+    right: -2.6rem !important;
   }
 
   .project-carousel {
