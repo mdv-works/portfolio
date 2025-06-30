@@ -746,14 +746,49 @@ nav.open .hamburger span:nth-child(2) {
 /* And the inner media stays contained and centered */
 .carousel.is-fullscreen .carousel__slide img,
 .carousel.is-fullscreen .carousel__slide video,
-.carousel.is-fullscreen .carousel__slide iframe,
-.carousel.is-fullscreen.rotate-landscape .carousel__slide img,
-.carousel.is-fullscreen.rotate-landscape .carousel__slide video,
-.carousel.is-fullscreen.rotate-landscape .carousel__slide iframe {
-  width: 100vw !important;
+.carousel.is-fullscreen .carousel__slide iframe {
+  width: 90vw !important;
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
+}
+.carousel.is-fullscreen.rotate-landscape .carousel__slide img,
+.carousel.is-fullscreen.rotate-landscape .carousel__slide video,
+.carousel.is-fullscreen.rotate-landscape .carousel__slide iframe {
+  width: auto !important;
+  height: 90vh !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Close-button styling */
+.carousel__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  font-size: 2.5rem;
+  color: #cccccc;
+  background: black;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10000;
+  display: none; /* hidden by default */
+}
+
+/* Show the close button only in fullscreen mode */
+.carousel.is-fullscreen .carousel__close {
+  display: block !important;
+}
+
+/* Disable prev/next on small screens */
+@media (max-width: 600px) {
+  .carousel__button {
+    display: none !important;
+  }
 }
 
 /*MEDIA QUERIES*/
@@ -1204,6 +1239,9 @@ Phone (up to 600px)
     max-width: 100vw !important;
     padding: 0;
     margin: 0 auto 3rem;
+  }
+  .carousel__button {
+    display: none !important;
   }
 }
 

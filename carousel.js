@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides = Array.from(document.querySelectorAll(".carousel__slide"));
   const prevBtn = document.querySelector(".carousel__button--prev");
   const nextBtn = document.querySelector(".carousel__button--next");
+  const closeBtn = document.querySelector(".carousel__close");
   const carousel = document.querySelector(".carousel");
   let current = 0;
 
@@ -9,12 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[current].classList.remove("active");
     current = (newIndex + slides.length) % slides.length;
     const nextSlide = slides[current];
-    nextSlide.style.animation = "none"; // reset animation
-    nextSlide.offsetHeight; // force reflow
-    nextSlide.style.animation = ""; // re-trigger it
+    nextSlide.style.animation = "none";
+    nextSlide.offsetHeight;
+    nextSlide.style.animation = "";
     nextSlide.classList.add("active");
   }
 
+  // Prev/Next
   prevBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     updateSlides(current - 1);
@@ -24,14 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlides(current + 1);
   });
 
-  // Fullscreen toggle + always add our rotate fallback
+  // Fullscreen toggle
   carousel.addEventListener("click", async (e) => {
-    if (e.target.closest(".carousel__button")) return;
-
+    if (
+      e.target.closest(".carousel__button") ||
+      e.target.closest(".carousel__close")
+    )
+      return;
     if (!document.fullscreenElement) {
       try {
         await carousel.requestFullscreen();
-        // try native lock, but we’ll always add the class as a fallback
         if (screen.orientation && screen.orientation.lock) {
           await screen.orientation.lock("landscape");
         }
@@ -40,30 +44,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       carousel.classList.add("is-fullscreen", "rotate-landscape");
     } else {
-      try {
-        await document.exitFullscreen();
-      } catch (err) {
-        console.warn("Exit fullscreen failed:", err);
-      }
+      exitCarouselFullscreen();
     }
   });
 
-  // Clean up when exiting fullscreen
+  // Close button
+  closeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    exitCarouselFullscreen();
+  });
+
+  // Clean up on fullscreen exit (Esc or API)
   document.addEventListener("fullscreenchange", () => {
     if (document.fullscreenElement !== carousel) {
       carousel.classList.remove("is-fullscreen", "rotate-landscape");
-      // unlock orientation if supported
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
+      unlockOrientation();
     }
   });
 
-  // Keyboard navigation (only in fullscreen)
+  // Keyboard nav (only in fullscreen)
   document.addEventListener("keydown", (e) => {
     if (document.fullscreenElement !== carousel) return;
     if (e.key === "ArrowLeft") updateSlides(current - 1);
     if (e.key === "ArrowRight") updateSlides(current + 1);
+    if (e.key === "Escape") exitCarouselFullscreen();
   });
 
   // Touch swipe
@@ -85,4 +89,26 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true }
   );
+
+  // Helper: exit fullscreen + cleanup classes + unlock orientation
+  async function exitCarouselFullscreen() {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+    } catch (err) {
+      console.warn("Exit fullscreen failed:", err);
+    }
+    carousel.classList.remove("is-fullscreen", "rotate-landscape");
+    unlockOrientation();
+  }
+
+  // Helper: unlock screen orientation if supported
+  function unlockOrientation() {
+    if (screen.orientation && screen.orientation.unlock) {
+      try {
+        screen.orientation.unlock();
+      } catch (err) {
+        console.warn("Orientation unlock failed:", err);
+      }
+    }
+  }
 });
