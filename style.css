@@ -758,8 +758,8 @@ nav.open .hamburger span:nth-child(2) {
 .carousel.is-fullscreen .carousel__slide img,
 .carousel.is-fullscreen .carousel__slide video,
 .carousel.is-fullscreen .carousel__slide iframe {
-  width: 90vw !important;
-  height: auto !important;
+  width: auto !important;
+  height: 85vh !important;
   object-fit: contain !important;
   display: block !important;
 }
@@ -767,7 +767,7 @@ nav.open .hamburger span:nth-child(2) {
 .carousel.is-fullscreen.rotate-landscape .carousel__slide video,
 .carousel.is-fullscreen.rotate-landscape .carousel__slide iframe {
   width: auto !important;
-  height: 90vh !important;
+  height: 85vh !important;
   object-fit: contain !important;
   display: block !important;
 }

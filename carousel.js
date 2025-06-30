@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[current].classList.remove("active");
     current = (newIndex + slides.length) % slides.length;
     const nextSlide = slides[current];
-    nextSlide.style.animation = "none"; // reset animation
+    nextSlide.style.animation = "none";
     nextSlide.offsetHeight; // force reflow
-    nextSlide.style.animation = ""; // re-trigger it
+    nextSlide.style.animation = "";
     nextSlide.classList.add("active");
   }
 
@@ -24,21 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlides(current + 1);
   });
 
-  // Fullscreen toggle + always add our rotate fallback
+  // Fullscreen + orientation toggle
   carousel.addEventListener("click", async (e) => {
     if (e.target.closest(".carousel__button")) return;
 
     if (!document.fullscreenElement) {
       try {
         await carousel.requestFullscreen();
-        // try native lock, but we’ll always add the class as a fallback
+        // lock to landscape if possible
         if (screen.orientation && screen.orientation.lock) {
           await screen.orientation.lock("landscape");
         }
       } catch (err) {
         console.warn("Fullscreen/orientation lock failed:", err);
       }
-      carousel.classList.add("is-fullscreen", "rotate-landscape");
     } else {
       try {
         await document.exitFullscreen();
@@ -48,18 +47,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Clean up when exiting fullscreen
+  // When fullscreen state changes, toggle class and unlock orientation
   document.addEventListener("fullscreenchange", () => {
-    if (document.fullscreenElement !== carousel) {
-      carousel.classList.remove("is-fullscreen", "rotate-landscape");
-      // unlock orientation if supported
+    if (document.fullscreenElement === carousel) {
+      carousel.classList.add("is-fullscreen");
+    } else {
+      carousel.classList.remove("is-fullscreen");
+      // unlock orientation on exit
       if (screen.orientation && screen.orientation.unlock) {
         screen.orientation.unlock();
       }
     }
   });
 
-  // Keyboard navigation (only in fullscreen)
+  // Keyboard nav
   document.addEventListener("keydown", (e) => {
     if (document.fullscreenElement !== carousel) return;
     if (e.key === "ArrowLeft") updateSlides(current - 1);
