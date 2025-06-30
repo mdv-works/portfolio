@@ -585,6 +585,7 @@ nav.open .hamburger span:nth-child(2) {
   margin: 2rem 0;
   z-index: 100;
   margin-bottom: 3rem;
+  cursor: pointer;
 }
 .carousel__container {
   position: relative;
@@ -627,19 +628,21 @@ nav.open .hamburger span:nth-child(2) {
 .carousel__slide img,
 .carousel__slide video,
 .carousel__slide iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 88%;
+  height: 88%;
+  object-fit: contain !important;
+  transform: translate(-50%, -50%);
 }
 .carousel__button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%) scaleY(1200%) scaleX(400%);
+  transform: translateY(-50%) scaleY(7) scaleX(3);
   border: none;
   background: none !important;
-  color: #b2b2b2;
+  color: #cccccc;
   font-size: 1.5rem;
   font-weight: 100;
   width: 2.5rem;
@@ -654,10 +657,46 @@ nav.open .hamburger span:nth-child(2) {
   color: #533ddd;
 }
 .carousel__button--prev {
-  left: 0rem;
+  left: 0.5rem;
 }
 .carousel__button--next {
-  right: 0rem;
+  right: 0.5rem;
+}
+
+.carousel.is-fullscreen {
+  /* make sure the carousel itself fills the screen */
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden;
+}
+
+/* Center and size down the slide media to 80% in fullscreen */
+.carousel.is-fullscreen .carousel__slide img,
+.carousel.is-fullscreen .carousel__slide video,
+.carousel.is-fullscreen .carousel__slide iframe {
+  width: 65% !important; /* 80% of the full-screen width */
+  height: auto !important; /* auto height to preserve aspect */
+  margin: 0 auto !important; /* center horizontally */
+  display: block !important;
+  object-fit: contain !important;
+}
+
+/* Optionally, dim the background a bit */
+.carousel.is-fullscreen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Make sure the slides themselves stay on top */
+.carousel.is-fullscreen .carousel__slide {
+  z-index: 10;
 }
 
 /*MEDIA QUERIES*/
@@ -665,7 +704,7 @@ nav.open .hamburger span:nth-child(2) {
 /*–––––––––––––––––––––––––––––––––––––––––––––––
 Tablet (up to 1024px)
 –––––––––––––––––––––––––––––––––––––––––––––––*/
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   /* Nav */
   nav {
     padding: 1rem 1.5rem;
@@ -816,22 +855,38 @@ Tablet (up to 1024px)
     padding: 0 1rem;
   }
   .carousel {
-    width: 90% !important;
-    margin: 1.5rem auto;
+    width: 100% !important;
+    margin: 1rem 0;
   }
   .carousel__container {
-    padding-top: 56.25%; /* 16:9 ratio, igual que antes */
+    padding-top: 75%; /* un poco más alto en móvil si lo prefieres */
+  }
+  .carousel__slide img,
+  .carousel__slide video,
+  .carousel__slide iframe {
+    object-fit: cover;
   }
   .carousel__button {
-    font-size: 1.25rem;
-    width: 2rem;
-    height: 2rem;
+    top: 50% !important;
+    transform: translateY(-50%) scaleY(3) !important;
+    width: 4.5rem !important;
+    height: 7rem !important;
+    font-size: 4.5rem !important;
+    text-shadow: none;
   }
+
   .carousel__button--prev {
-    left: 1rem;
+    left: -3rem !important;
   }
   .carousel__button--next {
-    right: 1rem;
+    right: -3rem !important;
+  }
+
+  .project-carousel {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0;
+    margin: 0 auto 3rem;
   }
 }
 
@@ -1068,27 +1123,30 @@ Phone (up to 600px)
   .carousel__slide video,
   .carousel__slide iframe {
     object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
   }
   .carousel__button {
-    /* reset the crazy scales */
-    transform: translateY(-100%) scale(3) !important;
-    /* make them smaller */
-    width: 1.5rem !important;
-    height: 1.5rem !important;
-    font-size: 0.9rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 3.5rem !important;
+    height: 7rem !important;
+    font-size: 3.5rem !important;
+    text-shadow: none;
   }
+
   .carousel__button--prev {
-    left: 0.5rem !important;
+    left: -3rem !important;
   }
   .carousel__button--next {
-    right: 0.5rem !important;
+    right: -3rem !important;
   }
 
   .project-carousel {
     width: 100% !important;
     max-width: 100vw !important;
-    padding: 0; /* optional gutters */
-    margin: 0 auto 3rem; /* center + bottom spacing */
+    padding: 0;
+    margin: 0 auto 3rem;
   }
 }
 
