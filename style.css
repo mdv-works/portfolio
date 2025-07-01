@@ -497,9 +497,13 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1150px;
+  max-width: 1125px;
   margin: 0 auto;
   gap: 1rem;
+}
+
+.video-group-horizontal div iframe {
+  height: 400px;
 }
 
 #background-3d {
