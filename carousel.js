@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  // Close‐button in fullscreen
   const closeBtn = document.querySelector(".carousel__close");
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -101,4 +100,33 @@ document.addEventListener("DOMContentLoaded", () => {
       document.exitFullscreen().catch(console.error);
     }
   });
+
+  // === DYNAMIC DOTS ===
+  const dotsContainer = document.querySelector(".carousel__dots");
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.classList.add("carousel__dot");
+    if (index === current) dot.classList.add("active");
+    dot.addEventListener("click", () => updateSlides(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    const dots = dotsContainer.querySelectorAll(".carousel__dot");
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+    });
+  }
+
+  function updateSlides(newIndex) {
+    slides[current].classList.remove("active");
+    current = (newIndex + slides.length) % slides.length;
+    const nextSlide = slides[current];
+    nextSlide.style.animation = "none"; // reset animation
+    nextSlide.offsetHeight; // force reflow
+    nextSlide.style.animation = ""; // re-trigger it
+    nextSlide.classList.add("active");
+    updateDots(); // 🟡 <--- add this line
+  }
 });

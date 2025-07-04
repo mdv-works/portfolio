@@ -712,6 +712,26 @@ nav.open .hamburger span:nth-child(2) {
   outline-offset: 2px;
 }
 
+.carousel__dots {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.carousel__dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background: #ccc;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel__dot.active {
+  background: #333;
+}
+
 /*─────────────────────────────────────────────────────────────
   Center the fullscreen carousel on any viewport 
 ─────────────────────────────────────────────────────────────*/
@@ -900,6 +920,7 @@ Tablet (up to 1024px)
   .project-header {
     padding: 0;
     width: 100%;
+    height: 300px;
   }
 
   .project-section p {
