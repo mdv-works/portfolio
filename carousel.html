@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carousel Demo</title>
-  <link rel="stylesheet" href="carousel.css" />
-</head>
-<body>
-  <div class="carousel">
-    <button class="carousel__button carousel__button--prev" aria-label="Anterior">‹</button>
-    <div class="carousel__container">
-      <div class="carousel__slide active">
-        <img src="https://picsum.photos/seed/picsum/800/450" alt="Ejemplo Imagen 1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel Demo</title>
+    <link rel="stylesheet" href="carousel.css" />
+  </head>
+  <body>
+    <div class="carousel">
+      <button
+        class="carousel__button carousel__button--prev"
+        aria-label="Anterior"
+      >
+        ‹
+      </button>
+      <div class="carousel__container">
+        <div class="carousel__slide active">
+          <img
+            src="https://picsum.photos/seed/picsum/800/450"
+            alt="Ejemplo Imagen 1"
+          />
+        </div>
+        <div class="carousel__slide">
+          <video autoplay muted loop playsinline>
+            <source
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div class="carousel__slide">
+          <iframe
+            src="https://player.vimeo.com/video/1096563999?autoplay=1&loop=1&muted=1&background=1"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="carousel__slide">
+          <img
+            src="https://picsum.photos/800/450?grayscale"
+            alt="Ejemplo Imagen 2"
+          />
+        </div>
       </div>
-      <div class="carousel__slide">
-        <video autoplay muted loop playsinline>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="carousel__slide">
-        <iframe
-          src="https://player.vimeo.com/video/1096563999?autoplay=1&loop=1&muted=1&background=1"
-          frameborder="0"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="carousel__slide">
-        <img src="https://picsum.photos/800/450?grayscale" alt="Ejemplo Imagen 2">
-      </div>
+      <button
+        class="carousel__button carousel__button--next"
+        aria-label="Siguiente"
+      >
+        ›
+      </button>
     </div>
-    <button class="carousel__button carousel__button--next" aria-label="Siguiente">›</button>
-  </div>
-  <script src="carousel.js"></script>
-</body>
+    <script src="carousel.js"></script>
+  </body>
 </html>

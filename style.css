@@ -121,7 +121,8 @@ header h2[data-animate] {
 }
 
 .tile img,
-.tile video {
+.tile video,
+.tile iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -137,7 +138,7 @@ header h2[data-animate] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.65);
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -232,14 +233,14 @@ footer {
 
 .experience-section h2 {
   font-size: 2.8rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   font-weight: 600;
 }
 
 .experience-card {
   border-left: 4px solid #7b7b7b;
   padding-left: 1.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
   margin-left: 0.2rem;
 }
 
@@ -254,7 +255,7 @@ footer {
   font-weight: 300;
   color: #aaa;
   display: block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .experience-card p {
@@ -524,10 +525,11 @@ footer {
   flex-direction: column; /* center in both axes if you have more than one line */
   align-items: center;
   justify-content: top;
-  margin-bottom: 60vh;
+  margin-bottom: 140vh;
   text-align: center; /* also center the text itself */
   width: 100vw;
   height: 50vh;
+  will-change: transform;
 }
 
 .center-subtitle p {
@@ -969,7 +971,7 @@ Tablet (up to 1024px)
   /* Center subtitle */
   .center-subtitle {
     height: 26vh;
-    margin-bottom: 20vh;
+    margin-bottom: 105vh;
   }
   .center-subtitle p {
     font-size: 1.5rem;
@@ -1195,7 +1197,7 @@ Phone (up to 600px)
   /* Center subtitle */
   .center-subtitle {
     height: 50vh;
-    margin-bottom: 35vh;
+    margin-bottom: 95vh;
     margin-top: 25vh;
   }
   .center-subtitle p {

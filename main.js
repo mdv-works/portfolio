@@ -158,3 +158,31 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(console.error);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const subtitle = document.querySelector(".center-subtitle");
+  if (!subtitle) return;
+
+  const speed = 0.32; // 0.3 = subtitle moves at 30% of scroll speed
+
+  let latestY = 0,
+    ticking = false;
+
+  function onScroll() {
+    latestY = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  function update() {
+    // Use translate3d for GPU acceleration
+    subtitle.style.transform = `translate3d(0, ${latestY * speed}px, 0)`;
+    ticking = false;
+  }
+
+  // initial position
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+});
