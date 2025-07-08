@@ -12,12 +12,41 @@ window.addEventListener("load", () => {
   });
 });
 
-const btn = document.getElementById("menu-toggle");
+// Menu hamburguesa
+
+const btn = document.getElementById("menu-toggle"); // Assuming "menu-toggle" is your hamburger button's ID
 const nav = document.querySelector("nav");
-btn.addEventListener("click", () => {
+
+// Function to close the menu
+const closeMenu = () => {
+  nav.classList.remove("open");
+};
+
+// Toggle menu on hamburger button click
+btn.addEventListener("click", (event) => {
+  event.stopPropagation(); // Prevent this click from immediately propagating to the document listener
   nav.classList.toggle("open");
 });
 
+// Close menu when clicking on any link inside the nav
+nav.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    // Optionally, you might want to stop propagation here too if your links
+    // trigger other events or hash changes that might interfere.
+    // event.stopPropagation();
+    closeMenu();
+  });
+});
+
+// Close menu when clicking anywhere on the document *except* the toggle button
+document.addEventListener("click", (event) => {
+  // If the menu is open AND the clicked element is NOT the hamburger button
+  if (nav.classList.contains("open") && !btn.contains(event.target)) {
+    closeMenu();
+  }
+});
+
+// --- Intersection Observer code (remains unchanged as it's not related to menu closing) ---
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -29,6 +58,10 @@ const observer = new IntersectionObserver(
   },
   { threshold: 0.1 }
 );
+
+document.querySelectorAll("[data-animate]").forEach((el) => {
+  observer.observe(el);
+});
 
 document.querySelectorAll("[data-animate]").forEach((el) => {
   observer.observe(el);

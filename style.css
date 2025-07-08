@@ -37,6 +37,15 @@ nav ul li a {
 nav ul li a:hover {
   color: #787878;
 }
+
+.logo-main {
+  height: 80px;
+  width: 80px;
+  position: fixed;
+  margin-left: -25px;
+  margin-top: -38px;
+}
+
 header {
   height: 220vh; /* enough scroll room */
   position: relative;
@@ -108,8 +117,12 @@ header h2[data-animate] {
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
   margin: 0;
-  padding-left: 13rem;
-  padding-right: 13rem;
+  padding-left: 15rem;
+  padding-right: 15rem;
+}
+
+#wall {
+  scroll-margin-top: 200px;
 }
 
 .tile {
@@ -121,14 +134,23 @@ header h2[data-animate] {
 }
 
 .tile img,
-.tile video,
-.tile iframe {
+.tile video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: filter 0.4s ease, transform 0.4s ease;
   transform-origin: center center;
+}
+
+.tile-video {
+  position: absolute;
+  transform-origin: center center;
+  transform: scale(1.25);
+  top: 28px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* Overlay effect */
@@ -138,7 +160,7 @@ header h2[data-animate] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.75);
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -161,12 +183,13 @@ header h2[data-animate] {
   font-weight: 300;
 }
 
-/* Hover animation */
+/* Hover animation
 .tile:hover img,
 .tile:hover video {
   filter: grayscale(100%) brightness(60%);
   transform: scale(1.03);
 }
+ */
 
 .tile:hover .overlay {
   opacity: 1;
@@ -734,6 +757,19 @@ nav.open .hamburger span:nth-child(2) {
   background: #333;
 }
 
+.pdf-viewer {
+  width: 100%;
+  height: 600px;
+  margin: 20px auto;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /*─────────────────────────────────────────────────────────────
   Center the fullscreen carousel on any viewport 
 ─────────────────────────────────────────────────────────────*/
@@ -882,6 +918,42 @@ Tablet (up to 1024px)
     padding-left: 1rem;
     padding-right: 1rem;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile-video {
+    top: 23px;
+  }
+
+  /* show hamburger on phones */
+  .hamburger {
+    display: flex;
+  }
+  nav ul {
+    display: none;
+  }
+
+  nav.open ul {
+    position: fixed; /* fix to viewport, not to nav */
+    top: 3.3rem; /* height of your nav bar */
+    bottom: 0; /* down to bottom of screen */
+    right: 0;
+    width: 100%;
+    background: #0c0c1a;
+    padding: 3rem;
+    overflow-y: auto; /* scroll if items exceed view */
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    opacity: 93%;
+  }
+
+  /* tighten up the gaps so fewer overflow */
+  nav.open ul li {
+    margin: 0.7rem 0;
+    text-align: center;
+  }
+  nav.open ul li a {
+    font-size: clamp(0.8rem, 3vw, 1.4rem);
   }
 
   /* About */
@@ -1074,6 +1146,10 @@ Phone (up to 600px)
     padding: 0;
   }
 
+  .tile-video {
+    top: 20px;
+  }
+
   /* About */
   .about-container {
     padding: 2rem 1rem;
@@ -1228,11 +1304,11 @@ Phone (up to 600px)
 
   /* tighten up the gaps so fewer overflow */
   nav.open ul li {
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     text-align: center;
   }
   nav.open ul li a {
-    font-size: clamp(1.2rem, 3vw, 3rem);
+    font-size: clamp(1rem, 3vw, 1.8rem);
   }
 
   .carousel {
