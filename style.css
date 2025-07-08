@@ -41,7 +41,7 @@ nav ul li a:hover {
 .logo-main {
   height: 80px;
   width: 80px;
-  position: fixed;
+  position: absolute;
   margin-left: -25px;
   margin-top: -38px;
 }
@@ -1101,6 +1101,13 @@ Phone (up to 600px)
   }
   nav ul li a {
     font-size: 0.8rem;
+  }
+
+  .logo-main {
+    height: 64px;
+    width: 64px;
+    margin-left: -20px;
+    margin-top: -32px;
   }
 
   /* Hero text */
