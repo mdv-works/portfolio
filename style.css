@@ -66,6 +66,10 @@ header h2[data-animate] {
   z-index: 10;
 }
 
+strong {
+  font-weight: 600 !important;
+}
+
 .section {
   padding: 4rem 2rem;
 }
