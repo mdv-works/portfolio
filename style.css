@@ -402,10 +402,11 @@ footer {
   font-size: 1rem;
   position: relative;
   margin-top: 6rem;
+  cursor: pointer;
 }
 
 .back-link:hover {
-  color: #fff;
+  color: #7b7b7b;
 }
 
 .links-icons {
