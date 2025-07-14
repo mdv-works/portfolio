@@ -232,15 +232,21 @@ footer {
 }
 
 .about-text {
-  max-width: 700px;
+  max-width: 780px;
   text-align: left;
   margin-bottom: 4rem;
 }
 
 .about-text h2 {
   font-size: 2.8rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   font-weight: 600;
+}
+
+.about-text h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .about-text p {
@@ -287,7 +293,7 @@ footer {
 
 .experience-card p {
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.9;
   font-weight: 300;
   color: #ddd;
 }
@@ -948,7 +954,7 @@ Tablet (up to 1024px)
     overflow-y: auto; /* scroll if items exceed view */
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: center;
     opacity: 93%;
   }
 
@@ -1303,14 +1309,14 @@ Phone (up to 600px)
     position: fixed; /* fix to viewport, not to nav */
     top: 3.3rem; /* height of your nav bar */
     bottom: 0; /* down to bottom of screen */
-    left: 0;
+    right: 0;
     width: 100%;
     background: #0c0c1a;
     padding: 3rem;
     overflow-y: auto; /* scroll if items exceed view */
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: center;
     opacity: 93%;
   }
 
@@ -1320,7 +1326,7 @@ Phone (up to 600px)
     text-align: center;
   }
   nav.open ul li a {
-    font-size: clamp(1rem, 3vw, 1.8rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
   }
 
   .carousel {
@@ -1410,11 +1416,11 @@ Phone (up to 600px)
 
   /* tighten up the gaps so fewer overflow */
   nav.open ul li {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     text-align: center;
   }
   nav.open ul li a {
-    font-size: clamp(1rem, 2.2vw, 2.6rem);
+    font-size: clamp(1rem, 2.2vw, 1.9rem);
   }
 }
 
@@ -1431,7 +1437,7 @@ Phone (up to 600px)
   justify-content: center;
   z-index: 999;
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.7s ease;
 }
 
 /* Spinner graphic */
