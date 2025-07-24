@@ -15,33 +15,58 @@ window.addEventListener("load", () => {
 // Menu hamburguesa
 
 const btn = document.getElementById("menu-toggle"); // Assuming "menu-toggle" is your hamburger button's ID
-const nav = document.querySelector("nav");
+const nav = document.querySelector("nav"); // The <nav> element, which contains the <ul>
 
-// Function to close the menu
+// Function to close the main mobile menu
 const closeMenu = () => {
   nav.classList.remove("open");
+  // IMPORTANT: Also close the language dropdown when the main menu closes
+  if (languageOptions.classList.contains("show")) {
+    languageOptions.classList.remove("show");
+  }
 };
 
-// Toggle menu on hamburger button click
+// Toggle main mobile menu on hamburger button click
 btn.addEventListener("click", (event) => {
   event.stopPropagation(); // Prevent this click from immediately propagating to the document listener
   nav.classList.toggle("open");
+
+  // If the menu is being closed by clicking the hamburger icon, also close the language dropdown
+  if (!nav.classList.contains("open")) {
+    languageOptions.classList.remove("show");
+  }
 });
 
-// Close menu when clicking on any link inside the nav
+// Close main mobile menu when clicking on any link inside the nav
 nav.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", (event) => {
-    // Optionally, you might want to stop propagation here too if your links
-    // trigger other events or hash changes that might interfere.
-    // event.stopPropagation();
-    closeMenu();
+    // We want to allow the language dropdown links to redirect, so check if it's a language link
+    if (!link.closest(".language-dropdown")) {
+      // If it's NOT a link within the language dropdown
+      closeMenu();
+    }
+    // For language links, the page will redirect, so no need to close the menu explicitly here.
   });
 });
 
-// Close menu when clicking anywhere on the document *except* the toggle button
+// NEW: Close main mobile menu when clicking on the nav's background (empty space within the open nav)
+nav.addEventListener("click", (event) => {
+  // If the menu is open AND the click target is exactly the nav element itself
+  // (meaning, you clicked on the background, not a child link or element)
+  if (nav.classList.contains("open") && event.target === nav) {
+    closeMenu();
+  }
+});
+
+// Close main mobile menu when clicking anywhere on the document *outside* the toggle button AND the nav itself
 document.addEventListener("click", (event) => {
   // If the menu is open AND the clicked element is NOT the hamburger button
-  if (nav.classList.contains("open") && !btn.contains(event.target)) {
+  // AND the clicked element is NOT inside the main navigation area (nav itself)
+  if (
+    nav.classList.contains("open") &&
+    !btn.contains(event.target) &&
+    !nav.contains(event.target)
+  ) {
     closeMenu();
   }
 });
@@ -63,12 +88,7 @@ document.querySelectorAll("[data-animate]").forEach((el) => {
   observer.observe(el);
 });
 
-document.querySelectorAll("[data-animate]").forEach((el) => {
-  observer.observe(el);
-});
-
 // Script 3D
-
 // Get container
 const container = document.getElementById("background-3d");
 
@@ -181,15 +201,18 @@ window.addEventListener("scroll", () => {
 // Calidad máxima vimeo
 document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.querySelector(".project-image iframe");
-  const player = new Vimeo.Player(iframe);
+  // Check if iframe exists before trying to create a Vimeo.Player
+  if (iframe) {
+    const player = new Vimeo.Player(iframe);
 
-  player
-    .getQualities()
-    .then((qualities) => {
-      qualities.sort((a, b) => b.height - a.height);
-      return player.setQuality(qualities[0].quality);
-    })
-    .catch(console.error);
+    player
+      .getQualities()
+      .then((qualities) => {
+        qualities.sort((a, b) => b.height - a.height);
+        return player.setQuality(qualities[0].quality);
+      })
+      .catch(console.error);
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -218,4 +241,71 @@ document.addEventListener("DOMContentLoaded", () => {
   // initial position
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
+});
+
+// Get references to the language dropdown elements (these were likely duplicated, consolidating)
+const languageDropdownToggle = document.getElementById("language-toggle");
+const languageOptions = document.querySelector(".language-options");
+const languageDropdown = document.querySelector(".language-dropdown"); // The parent li element
+
+// --- Language Dropdown Logic (moved here for clarity and to ensure all elements are defined) ---
+
+// Toggle the visibility of the language options when the language toggle is clicked
+languageDropdownToggle.addEventListener("click", function (event) {
+  event.preventDefault();
+  event.stopPropagation(); // <--- THIS IS CRUCIAL FOR LANGUAGE TOGGLE
+  // Toggle a class that can be used to show/hide the dropdown content via CSS
+  languageOptions.classList.toggle("show");
+});
+
+// Close the language dropdown if the user clicks outside of it AND not on the main nav
+document.addEventListener("click", function (event) {
+  // Check if the clicked element is NOT inside the language dropdown container
+  // and is NOT the language toggle button itself.
+  if (
+    !languageDropdown.contains(event.target) &&
+    !languageDropdownToggle.contains(event.target)
+  ) {
+    // If the dropdown is currently open, hide it
+    if (languageOptions.classList.contains("show")) {
+      languageOptions.classList.remove("show");
+    }
+  }
+});
+
+// Add functionality for the language options themselves (EN, JA)
+languageOptions.querySelectorAll("a").forEach((option) => {
+  option.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default link behavior, as we'll handle the redirection
+    event.stopPropagation(); // Prevent this click from closing the main menu immediately
+
+    const selectedLang = this.dataset.lang; // Get the 'data-lang' attribute (e.g., 'en', 'ja')
+    const currentPath = window.location.pathname; // Get the current path, e.g., "/portfolio/es/index.html"
+
+    // Split the path into segments, filtering out any empty strings from leading/trailing slashes
+    const pathSegments = currentPath
+      .split("/")
+      .filter((segment) => segment !== "");
+
+    let newPath;
+    // Assuming your structure is always like /portfolio/{lang}/page.html
+    // The language code should be the second-to-last segment (e.g., 'es' in ['portfolio', 'es', 'index.html'])
+    if (pathSegments.length >= 2) {
+      // Replace the current language segment with the newly selected one
+      pathSegments[pathSegments.length - 2] = selectedLang;
+      // Reconstruct the new path with a leading slash
+      newPath = "/" + pathSegments.join("/");
+    } else {
+      // Fallback for unexpected paths: go directly to the new language's index page
+      console.warn(
+        "Could not determine current language from path. Redirecting to new language's index page."
+      );
+      newPath = `/${selectedLang}/index.html`; // Adjust if your root path is different
+    }
+
+    // Redirect the user to the new language page
+    window.location.href = newPath;
+
+    // No need to explicitly close the dropdown here as the page will reload
+  });
 });
