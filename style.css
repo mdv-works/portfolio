@@ -898,7 +898,7 @@ embed {
   background-color: #0c0c1a; /* Dropdown background */
   min-width: 80px; /* Minimum width for the dropdown */
   padding-bottom: 1.2rem;
-  padding-top: 1rem;
+  padding-top: 0.8rem;
   z-index: 1; /* Ensure it appears above other content */
   top: 100%; /* Position below the toggle */
   left: 50%; /* Positions the left edge of the dropdown at the center of its parent */

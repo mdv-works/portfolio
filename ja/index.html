@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,49 +12,49 @@
     <link
       rel="icon"
       type="image/png"
-      href="favicon/favicon-96x96.png"
+      href="../favicon/favicon-96x96.png"
       sizes="96x96"
     />
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="favicon/apple-touch-icon.png"
+      href="../favicon/apple-touch-icon.png"
     />
-    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mdv-works.github.io/portfolio/" />
-    <meta property="og:title" content="Portfolio - Manuel I. de Val" />
+    <meta property="og:title" content="ポートフォリオ - Manuel I. de Val" />
     <meta
       property="og:description"
-      content="Descubre mis proyectos de video, edición, post-producción y más."
+      content="私のビデオ、編集、ポストプロダクションなどのプロジェクトをご覧ください。"
     />
     <meta
       property="og:image"
       content="https://mdv-works.github.io/portfolio/favicon/favicon-96x96.png"
     />
-    <meta property="og:site_name" content="Portfolio - Manuel I. de Val" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="ポートフォリオ - Manuel I. de Val" />
+    <meta property="og:locale" content="ja_JP" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://mdv-works.github.io/portfolio/" />
-    <meta name="twitter:title" content="Portfolio - Manuel I. de Val" />
+    <meta name="twitter:title" content="ポートフォリオ - Manuel I. de Val" />
     <meta
       name="twitter:description"
-      content="Creative visuals with a timeless style."
+      content="時代を超越したスタイルのクリエイティブなビジュアル。"
     />
     <meta
-      name="twitter:image"
+      property="twitter:image"
       content="https://mdv-works.github.io/portfolio/favicon/favicon-96x96.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="style.css" as="style" />
+    <link rel="preload" href="../style.css" as="style" />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div id="preloader">
@@ -67,19 +67,30 @@
           <img
             src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/mdv_logo_blanco_sinfondo.png?updatedAt=1750341286632"
             class="logo-main"
-            alt="MDV Logo Blanco - Portfolio Audiovisual"
+            alt="MDV ホワイトロゴ - オーディオビジュアルポートフォリオ"
           />
         </a>
-        <button id="menu-toggle" class="hamburger" aria-label="Toggle menu">
+        <button
+          id="menu-toggle"
+          class="hamburger"
+          aria-label="メニューを切り替える"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
         <ul>
-          <li><a href="#wall">Proyectos</a></li>
-          <li><a href="about.html">Quién Soy</a></li>
-          <li><a href="experience.html">Experiencia</a></li>
-          <li><a href="contact.html">Contacto</a></li>
+          <li><a href="#wall">作品</a></li>
+          <li><a href="about.html">私について</a></li>
+          <li><a href="experience.html">経験</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li class="language-dropdown">
+            <a class="language-dropdown-toggle" id="language-toggle"> JAP </a>
+            <div class="language-options">
+              <a href="#" data-lang="es">ESP</a>
+              <a href="#" data-lang="en">ENG</a>
+            </div>
+          </li>
         </ul>
       </nav>
 
@@ -88,9 +99,7 @@
       </header>
 
       <div class="center-subtitle">
-        <p data-animate="">
-          Aquí puedes ver algunos de mis proyectos más destacados.
-        </p>
+        <p data-animate="">私のもっとも代表的な作品はこちらでご覧ください</p>
       </div>
 
       <section id="wall">
@@ -131,12 +140,12 @@
                 <source
                   src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto3.mp4?updatedAt=1750341297463"
                   type="video/mp4"
-                  alt="Carteles de teatro"
+                  alt="演劇ポスター"
                 />
               </video>
             </a>
             <div class="overlay">
-              <h3>Carteles de teatro</h3>
+              <h3>演劇のデジタルサイネージ</h3>
               <span>2024</span>
             </div>
           </div>
@@ -144,7 +153,7 @@
             <a href="projects\LIDERAZGO_EN_ACCION.html" class="tile">
               <img
                 src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura_proyecto_4.jpg?updatedAt=1751985500384"
-                alt="Colección de libros: Liderazgo en Acción"
+                alt="書籍コレクション：行動するリーダーシップ"
               />
             </a>
             <div class="overlay">
@@ -208,7 +217,7 @@
               <script src="https://player.vimeo.com/api/player.js"></script>
             </a>
             <div class="overlay">
-              <h3>Retratos ecuestres</h3>
+              <h3>馬術肖像画展の宣伝動画</h3>
               <span>2023</span>
             </div>
           </div>
@@ -235,11 +244,11 @@
             <a href="projects\INFOGRAFIA_LUETZEN.html" class="tile">
               <img
                 src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto-10.jpg?updatedAt=1751712451582"
-                alt="Infografía de una batalla"
+                alt="戦闘のインフォグラフィック"
               />
             </a>
             <div class="overlay">
-              <h3>Infografía de una batalla</h3>
+              <h3>戦いの図</h3>
               <span>2025</span>
             </div>
           </div>
@@ -247,11 +256,11 @@
             <a href="projects\MAPA_DEMOGRAFICO.html" class="tile">
               <img
                 src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto-11.png?updatedAt=1751988814511"
-                alt="Mapa demográfico"
+                alt="人口統計マップ"
               />
             </a>
             <div class="overlay">
-              <h3>Mapa demográfico</h3>
+              <h3>人口分布図</h3>
               <span>2025</span>
             </div>
           </div>
@@ -259,11 +268,11 @@
             <a href="projects\INFORME_DE_TURISMO.html" class="tile">
               <img
                 src="https://ik.imagekit.io/bnkcab5v4/PORTFOLIO%20MDV/miniatura-proyecto-12.jpg?updatedAt=17519883974950"
-                alt="Informe de turismo"
+                alt="観光報告書"
               />
             </a>
             <div class="overlay">
-              <h3>Informe de turismo</h3>
+              <h3>聖地巡礼に関する報告書</h3>
               <span>2024</span>
             </div>
           </div>
@@ -275,7 +284,7 @@
           <a
             href="https://www.instagram.com/mdv.works/"
             target="_blank"
-            aria-label="Instagram"
+            aria-label="インスタグラム"
           >
             <svg
               width="36"
@@ -292,7 +301,7 @@
           <a
             href="https://www.linkedin.com/in/manuel-iglesias-de-val-2b076527a"
             target="_blank"
-            aria-label="LinkedIn"
+            aria-label="リンクトイン"
           >
             <svg
               width="36"
@@ -331,15 +340,12 @@
       <br />
       <br />
       <br />
-      <footer>
-        © 2025 Manuel Iglesias de Val. Todos los derechos reservados.
-      </footer>
-      <!-- Required scripts -->
+      <footer>© 2025 Manuel Iglesias de Val. 全著作権所有。</footer>
       <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/build/three.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/examples/js/loaders/FontLoader.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/examples/js/geometries/TextGeometry.js"></script>
 
-      <script src="main.js"></script>
+      <script src="../main.js"></script>
     </div>
   </body>
 </html>
